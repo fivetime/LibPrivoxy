@@ -19,23 +19,17 @@ License: GNU GENERAL PUBLIC LICENSE Version 2
 Author: Shiyu Tang <shiyutang#gmail.com>
 <br/>
 <br/>
-Notice: Important changes to original Privoxy:
-<br/>
-<br/>
-1. Use custom DNS servers
+Notice: Important changes to original Privoxy:  
+  
+## Use custom DNS servers
 <br />
-You can set DNS servers in config file to use specified DNS servers (of example, 8.8.8.8 and/or 208.67.222.222) instead of system-wide DNS settings. You can add no more than 6 DNS servers. Like:
-<br/>
-<br/>
-<code>
+You can set DNS servers in config file to use specified DNS servers (of example, 8.8.8.8 and/or 208.67.222.222) instead of system-wide DNS settings. You can add no more than 6 DNS servers. Like:  
+  
+```
 dns-servers 8.8.8.8;208.67.222.222
-</code>
-<br/>
-<br/>
-Sample code (C#) of using the dll:
-<br/>
-<br/>
-<code>
+```
+### Sample code (C#) of using the dll:
+```
 public class PrivoxyWrapper
 {
 
@@ -48,4 +42,24 @@ public class PrivoxyWrapper
 	[DllImport(@"LibPrivoxy.dll")]
     public static extern int IsRunning();
 }
-</code>
+```
+### Sample code (Java#) of using the dll:
+```
+<!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
+<dependency>
+    <groupId>net.java.dev.jna</groupId>
+    <artifactId>jna</artifactId>
+    <version>5.5.0</version>
+</dependency>
+	
+import com.sun.jna.Library;
+import com.sun.jna.Native;
+
+public interface LibPrivoxy extends Library {
+    LibPrivoxy INSTANCE = Native.load("LibPrivoxy", LibPrivoxy.class);
+
+    int StartPrivoxy(String configFileFullPath);
+    void StopPrivoxy();
+    int IsRunning();
+}
+```
