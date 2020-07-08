@@ -3839,6 +3839,7 @@ int main(int argc, char **argv)
          set_debug_level(LOG_LEVEL_STFU);
       }
 #endif
+#ifndef LIBPRIVOXY 
       else if (argc_pos + 1 != argc)
       {
          /*
@@ -3848,6 +3849,7 @@ int main(int argc, char **argv)
           */
          usage(argv[0]);
       }
+#endif
       else
 
 #endif /* defined(_WIN32) && !defined(_WIN_CONSOLE) */

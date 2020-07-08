@@ -7,10 +7,16 @@
 #define LIBPRIVOXY_API __declspec(dllimport)
 #endif
 
-LIBPRIVOXY_API int __stdcall StartPrivoxy(char *config_full_path);
+#ifdef LIBEXPORT_STDCALL
+#define LIBSTDCALL __stdcall
+#else
+#define LIBSTDCALL
+#endif
 
-LIBPRIVOXY_API void __stdcall StopPrivoxy();
+LIBPRIVOXY_API int LIBSTDCALL StartPrivoxy(char *config_full_path);
 
-LIBPRIVOXY_API int __stdcall IsRunning();
+LIBPRIVOXY_API void LIBSTDCALL StopPrivoxy();
+
+LIBPRIVOXY_API int LIBSTDCALL IsRunning();
 
 #endif

@@ -7,7 +7,7 @@ extern HMODULE g_hLibPrivoxyModule = NULL;
 extern int g_terminate;
 extern void close_privoxy_listening_socket();
 
-LIBPRIVOXY_API int __stdcall StartPrivoxy(char *config_full_path)
+LIBPRIVOXY_API int LIBSTDCALL StartPrivoxy(char *config_full_path)
 {
 	g_terminate = 0;
 
@@ -19,13 +19,13 @@ LIBPRIVOXY_API int __stdcall StartPrivoxy(char *config_full_path)
 	return 0;
 }
 
-LIBPRIVOXY_API void __stdcall StopPrivoxy()
+LIBPRIVOXY_API void LIBSTDCALL StopPrivoxy()
 {
 	g_terminate = 1;
 	close_privoxy_listening_socket();
 }
 
-LIBPRIVOXY_API int __stdcall IsRunning()
+LIBPRIVOXY_API int LIBSTDCALL IsRunning()
 {
 	return 1 == g_terminate ? 0 : 1;
 }
